@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ScriptBlox Open Source Finder</title>
+    <title>ScriptBlox | Open Source Finder</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -37,7 +37,7 @@
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -134,6 +134,30 @@
             cursor: not-allowed;
         }
 
+        /* Advanced Options */
+        .advanced-options {
+            display: flex;
+            gap: 15px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .option-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .option-checkbox input {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
         /* Status */
         .status-section {
             margin-top: 20px;
@@ -175,7 +199,7 @@
         /* Main Layout */
         .main-layout {
             display: grid;
-            grid-template-columns: 350px 1fr;
+            grid-template-columns: 400px 1fr;
             gap: 25px;
             min-height: 600px;
         }
@@ -247,13 +271,13 @@
         }
 
         .script-tab {
-            padding: 18px 20px;
+            padding: 15px 20px;
             border-bottom: 1px solid var(--border);
             cursor: pointer;
             transition: all 0.2s;
             display: flex;
-            align-items: center;
-            gap: 15px;
+            align-items: flex-start;
+            gap: 12px;
         }
 
         .script-tab:hover {
@@ -266,15 +290,16 @@
         }
 
         .script-icon {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             background: linear-gradient(135deg, var(--primary), #58a6ff);
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 16px;
             flex-shrink: 0;
+            margin-top: 2px;
         }
 
         .script-info {
@@ -284,31 +309,35 @@
 
         .script-title {
             font-weight: 600;
-            font-size: 15px;
+            font-size: 14px;
             margin-bottom: 4px;
-            white-space: nowrap;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
             overflow: hidden;
-            text-overflow: ellipsis;
         }
 
         .script-meta {
             display: flex;
-            gap: 12px;
-            font-size: 12px;
+            gap: 10px;
+            font-size: 11px;
             color: var(--text-secondary);
             flex-wrap: wrap;
+            align-items: center;
         }
 
         .script-game {
             background: rgba(0, 120, 212, 0.2);
-            padding: 2px 8px;
+            padding: 2px 6px;
             border-radius: 4px;
+            font-weight: 500;
         }
 
         .script-badge {
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 11px;
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-size: 10px;
             font-weight: 600;
         }
 
@@ -322,21 +351,23 @@
             color: #58a6ff;
         }
 
-        .badge-key {
-            background: rgba(218, 54, 51, 0.2);
-            color: #f85149;
-        }
-
         .badge-loadstring {
             background: rgba(248, 81, 73, 0.2);
             color: #f85149;
+        }
+
+        .script-stats {
+            display: flex;
+            gap: 8px;
+            font-size: 11px;
+            color: var(--text-muted);
         }
 
         .panel-footer {
             padding: 15px 20px;
             background: rgba(0, 0, 0, 0.2);
             border-top: 1px solid var(--border);
-            font-size: 13px;
+            font-size: 12px;
             color: var(--text-secondary);
         }
 
@@ -366,20 +397,21 @@
         }
 
         #selectedScriptTitle {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 700;
             margin-bottom: 8px;
             word-break: break-word;
+            line-height: 1.3;
         }
 
         #selectedScriptInfo {
             color: var(--text-secondary);
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .action-buttons {
             display: flex;
-            gap: 12px;
+            gap: 10px;
             flex-shrink: 0;
         }
 
@@ -420,15 +452,14 @@
             padding: 0;
             overflow-y: auto;
             max-height: 500px;
-            position: relative;
         }
 
         #scriptContent {
             background: rgba(0, 0, 0, 0.2);
-            padding: 20px;
+            padding: 25px;
             font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-            font-size: 14px;
-            line-height: 1.7;
+            font-size: 13px;
+            line-height: 1.6;
             white-space: pre-wrap;
             word-break: break-word;
             color: var(--text-primary);
@@ -436,38 +467,7 @@
             overflow-x: auto;
             border: none;
             margin: 0;
-        }
-
-        .loadstring-info {
-            background: rgba(248, 81, 73, 0.1);
-            border: 1px solid rgba(248, 81, 73, 0.3);
-            border-radius: 6px;
-            padding: 10px 15px;
-            margin: 15px 25px 0;
-            font-size: 13px;
-            color: #f85149;
-            display: none;
-        }
-
-        .loadstring-info i {
-            margin-right: 8px;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: var(--text-muted);
-        }
-
-        .empty-state i {
-            font-size: 48px;
-            margin-bottom: 20px;
-            opacity: 0.5;
-        }
-
-        .empty-state h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
+            tab-size: 4;
         }
 
         /* Loading Animation */
@@ -571,64 +571,88 @@
             }
         }
 
-        /* Demo Mode Warning */
-        .demo-warning {
-            background: rgba(248, 81, 73, 0.1);
-            border: 1px solid rgba(248, 81, 73, 0.3);
-            border-radius: 8px;
-            padding: 15px;
-            margin-top: 20px;
-            display: none;
-        }
-
-        .demo-warning i {
-            color: #f85149;
-            margin-right: 10px;
-        }
-
-        .demo-warning p {
-            margin: 0;
-            font-size: 13px;
-            color: #f85149;
-        }
-
-        /* API Selection */
-        .api-selector {
+        /* Pagination */
+        .pagination {
             display: flex;
-            gap: 10px;
-            margin: 10px 0;
             justify-content: center;
-            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+            padding: 0 20px 20px;
         }
 
-        .api-btn {
+        .page-btn {
+            padding: 8px 15px;
             background: var(--bg-input);
             border: 1px solid var(--border);
             color: var(--text-secondary);
-            padding: 8px 15px;
             border-radius: 6px;
             cursor: pointer;
             font-size: 13px;
             transition: all 0.2s;
         }
 
-        .api-btn:hover {
+        .page-btn:hover:not(:disabled) {
             background: var(--primary);
             color: white;
             border-color: var(--primary);
         }
 
-        .api-btn.active {
+        .page-btn.active {
             background: var(--primary);
             color: white;
             border-color: var(--primary);
         }
 
-        /* Source info */
-        .source-info {
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-top: 5px;
+        .page-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Info boxes */
+        .info-box {
+            background: rgba(0, 120, 212, 0.1);
+            border: 1px solid rgba(0, 120, 212, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            font-size: 13px;
+        }
+
+        .info-box i {
+            color: #58a6ff;
+            margin-right: 8px;
+        }
+
+        /* Filter chips */
+        .filter-chips {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 10px 0;
+            padding: 0 20px;
+        }
+
+        .filter-chip {
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-chip:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .filter-chip.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
         }
     </style>
 </head>
@@ -637,37 +661,46 @@
         <header>
             <div class="logo-section">
                 <h1><i class="fas fa-code"></i> ScriptBlox Open Source Finder</h1>
-                <p>Find clean, readable, open-source Roblox scripts. Searches all scripts and extracts code from loadstrings.</p>
+                <p>Find ALL open-source Roblox scripts. Searches every script and extracts clean code from loadstrings.</p>
             </div>
             
             <div class="search-container">
                 <div class="search-box">
                     <i class="fas fa-search"></i>
-                    <input type="text" id="searchInput" placeholder="Enter search term (e.g., 'admin', 'esp', 'fly', 'auto farm')">
+                    <input type="text" id="searchInput" placeholder="Search ALL scripts (e.g., '99 nights', 'admin', 'fly', 'esp')">
                 </div>
                 
-                <div class="api-selector">
-                    <button class="api-btn active" data-api="search">Search Scripts</button>
-                    <button class="api-btn" data-api="fetch">Latest Scripts</button>
-                    <button class="api-btn" data-api="demo">Demo Mode</button>
+                <div class="advanced-options">
+                    <label class="option-checkbox">
+                        <input type="checkbox" id="fetchAllPages" checked>
+                        <span>Fetch ALL pages (gets everything)</span>
+                    </label>
+                    <label class="option-checkbox">
+                        <input type="checkbox" id="extractLoadstrings" checked>
+                        <span>Extract loadstring content</span>
+                    </label>
+                    <label class="option-checkbox">
+                        <input type="checkbox" id="strictFilter" checked>
+                        <span>Strict open-source filter</span>
+                    </label>
                 </div>
                 
                 <button id="searchBtn" class="search-btn">
-                    <i class="fas fa-search"></i> Find Open Source Scripts
+                    <i class="fas fa-search"></i> Fetch ALL Open Source Scripts
                 </button>
                 
-                <div class="demo-warning" id="demoWarning">
+                <div class="info-box">
                     <i class="fas fa-info-circle"></i>
-                    <p>Demo Mode: Using sample data. Enable CORS extension for real API access.</p>
+                    <span>This will fetch ALL scripts matching your search and show only open-source ones with clean code.</span>
                 </div>
             </div>
             
             <div class="status-section">
-                <div id="statusText">Enter a search term or click "Latest Scripts"</div>
+                <div id="statusText">Enter a search term to find ALL open-source scripts</div>
                 <div class="progress-bar" id="progressBar">
                     <div class="progress-fill" id="progressFill"></div>
                 </div>
-                <div class="progress-text" id="progressText">Starting search...</div>
+                <div class="progress-text" id="progressText">Starting...</div>
             </div>
         </header>
 
@@ -677,24 +710,24 @@
                 <div class="panel-header">
                     <h3><i class="fas fa-clipboard-list"></i> Open Source Scripts</h3>
                     <div class="sort-controls">
-                        <button class="sort-btn active" data-sort="relevance">Relevance</button>
-                        <button class="sort-btn" data-sort="views">Views</button>
-                        <button class="sort-btn" data-sort="date">Recent</button>
+                        <button class="sort-btn active" data-sort="relevance">Best Match</button>
+                        <button class="sort-btn" data-sort="views">Most Views</button>
+                        <button class="sort-btn" data-sort="date">Newest</button>
                     </div>
                 </div>
                 
                 <div class="scripts-list" id="scriptsList">
                     <div class="empty-state" id="emptyState">
                         <i class="fas fa-code-branch"></i>
-                        <h3>No scripts found</h3>
-                        <p>Search for scripts to find open-source ones</p>
+                        <h3>No scripts yet</h3>
+                        <p>Enter a search term to fetch ALL open-source scripts</p>
                     </div>
                     
                     <div class="loading" id="scriptsLoading">
                         <div class="spinner"></div>
-                        <p>Searching for open-source scripts...</p>
+                        <p>Fetching ALL scripts...</p>
                         <p style="font-size: 12px; color: var(--text-muted); margin-top: 10px;">
-                            Analyzing scripts and loadstrings (this may take a moment)...
+                            This may take a moment as we analyze every script...
                         </p>
                     </div>
                     
@@ -703,7 +736,9 @@
                 
                 <div class="panel-footer">
                     <div id="statsText">Found: 0 open source scripts</div>
-                    <div class="source-info" id="apiModeInfo">Searching all scripts</div>
+                    <div style="font-size: 11px; color: var(--text-muted); margin-top: 3px;">
+                        <i class="fas fa-info-circle"></i> <span id="analysisInfo">Ready to search</span>
+                    </div>
                 </div>
             </div>
 
@@ -712,38 +747,18 @@
                 <div class="viewer-header">
                     <div class="script-details">
                         <h2 id="selectedScriptTitle">Select a Script</h2>
-                        <div id="selectedScriptInfo">Click on a script from the list to view its content</div>
+                        <div id="selectedScriptInfo">Click on any script to view its clean, open-source code</div>
                     </div>
                     
                     <div class="action-buttons">
                         <button id="copyBtn" class="action-btn copy-btn" disabled>
-                            <i class="fas fa-copy"></i> Copy Script
+                            <i class="fas fa-copy"></i> Copy Code
                         </button>
                     </div>
                 </div>
                 
-                <div class="loadstring-info" id="loadstringInfo">
-                    <i class="fas fa-link"></i>
-                    <span>This contains a loadstring. Showing extracted content.</span>
-                </div>
-                
                 <div class="script-content">
-                    <pre id="scriptContent">Select a script from the left panel to view its content...</pre>
-                </div>
-                
-                <div class="viewer-footer">
-                    <div class="footer-item open-source">
-                        <i class="fas fa-lock-open"></i>
-                        <span>Open Source</span>
-                    </div>
-                    <div class="footer-item readable">
-                        <i class="fas fa-eye"></i>
-                        <span>Human Readable</span>
-                    </div>
-                    <div class="footer-item clean">
-                        <i class="fas fa-shield-alt"></i>
-                        <span>Not Obfuscated</span>
-                    </div>
+                    <pre id="scriptContent">Select a script to view its clean, open-source code...</pre>
                 </div>
             </div>
         </div>
@@ -752,295 +767,35 @@
     <!-- Toast Notification -->
     <div class="toast" id="toast">
         <i class="fas fa-check-circle"></i>
-        <span id="toastMessage">Script copied to clipboard!</span>
+        <span id="toastMessage">Code copied!</span>
     </div>
 
     <script>
-        class ScriptBloxViewer {
+        class ScriptBloxOpenSourceFinder {
             constructor() {
                 this.scripts = [];
                 this.filteredScripts = [];
                 this.selectedScript = null;
                 this.currentSort = 'relevance';
-                this.currentApi = 'search';
                 this.isSearching = false;
-                this.allScriptsData = [];
+                this.currentPage = 1;
+                this.totalPages = 1;
                 this.loadstringCache = new Map();
-                
-                // Enhanced sample data with real open source scripts
-                this.sampleData = this.createEnhancedSampleData();
+                this.fetchQueue = [];
+                this.processingQueue = false;
                 
                 this.initializeElements();
                 this.setupEventListeners();
-            }
-            
-            createEnhancedSampleData() {
-                return [
-                    {
-                        _id: "sample1",
-                        title: "Admin Commands Script - OPEN SOURCE",
-                        game: {
-                            _id: "game1",
-                            name: "Adopt Me",
-                            imageUrl: ""
-                        },
-                        slug: "admin-commands-script-open-source",
-                        verified: true,
-                        key: false,
-                        views: 15000,
-                        scriptType: "Open Source",
-                        isUniversal: true,
-                        isPatched: false,
-                        createdAt: new Date().toISOString(),
-                        updatedAt: new Date().toISOString(),
-                        image: "",
-                        script: `-- Admin Commands Script
--- Open Source - Feel free to modify!
-
-local Players = game:GetService("Players")
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-
-local function onPlayerAdded(player)
-    player.Chatted:Connect(function(message)
-        if message:sub(1, 6) == "!admin" then
-            local command = message:sub(8):lower()
-            
-            if command == "kick all" then
-                for _, p in pairs(Players:GetPlayers()) do
-                    if p ~= player then
-                        p:Kick("Kicked by admin")
-                    end
-                end
-            elseif command == "fly" then
-                -- Fly script
-                local flySpeed = 50
-                local bodyVelocity = Instance.new("BodyVelocity")
-                bodyVelocity.Velocity = Vector3.new(0, flySpeed, 0)
-                bodyVelocity.Parent = player.Character.HumanoidRootPart
-            end
-        end
-    end)
-end
-
-Players.PlayerAdded:Connect(onPlayerAdded)
-
-print("Admin script loaded successfully!")`,
-                        matched: ["admin", "commands", "script"]
-                    },
-                    {
-                        _id: "sample2",
-                        title: "Auto Farm with Loadstring Content",
-                        game: {
-                            _id: "game2",
-                            name: "Blox Fruits",
-                            imageUrl: ""
-                        },
-                        slug: "auto-farm-loadstring",
-                        verified: false,
-                        key: false,
-                        views: 8500,
-                        scriptType: "Open Source",
-                        isUniversal: false,
-                        isPatched: false,
-                        createdAt: new Date(Date.now() - 86400000).toISOString(),
-                        updatedAt: new Date(Date.now() - 86400000).toISOString(),
-                        image: "",
-                        script: `-- Auto Farm Script with loadstring
--- This fetches code from pastebin
-
-loadstring(game:HttpGet("https://pastebin.com/raw/abc123"))()`,
-                        matched: ["auto", "farm", "loadstring"],
-                        loadstringContent: `-- Auto Farm Script - Extracted from loadstring
--- Open source farming script for Blox Fruits
-
-local Players = game:GetService("Players")
-local Workspace = game:GetService("Workspace")
-
-local function findNearestMob()
-    local nearest = nil
-    local nearestDist = math.huge
-    local char = Players.LocalPlayer.Character
-    
-    if not char then return nil end
-    
-    for _, mob in pairs(Workspace.Mobs:GetChildren()) do
-        if mob:FindFirstChild("Humanoid") and mob.Humanoid.Health > 0 then
-            local dist = (mob.PrimaryPart.Position - char.PrimaryPart.Position).Magnitude
-            if dist < nearestDist then
-                nearestDist = dist
-                nearest = mob
-            end
-        end
-    end
-    
-    return nearest
-end
-
-local function autoFarm()
-    while true do
-        wait(1)
-        local mob = findNearestMob()
-        if mob then
-            -- Attack the mob
-            game:GetService("ReplicatedStorage").Remotes.Attack:FireServer(mob)
-            print("Attacking:", mob.Name)
-        end
-    end
-end
-
--- Start the auto farm
-spawn(autoFarm)
-print("Auto farm script started!")`
-                    },
-                    {
-                        _id: "sample3",
-                        title: "ESP Script - Player Highlight",
-                        game: {
-                            _id: "game3",
-                            name: "Arsenal",
-                            imageUrl: ""
-                        },
-                        slug: "esp-script-pvp",
-                        verified: true,
-                        key: false,
-                        views: 22000,
-                        scriptType: "Open Source",
-                        isUniversal: true,
-                        isPatched: false,
-                        createdAt: new Date(Date.now() - 172800000).toISOString(),
-                        updatedAt: new Date(Date.now() - 172800000).toISOString(),
-                        image: "",
-                        script: `-- ESP Script - Shows players through walls
--- Open Source Version
-
-local Players = game:GetService("Players")
-local RunService = game:GetService("RunService")
-
-local function createESP(player)
-    if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
-        local highlight = Instance.new("Highlight")
-        highlight.FillColor = Color3.fromRGB(255, 0, 0)
-        highlight.OutlineColor = Color3.fromRGB(255, 255, 255)
-        highlight.FillTransparency = 0.5
-        highlight.Parent = player.Character
-        
-        local billboard = Instance.new("BillboardGui")
-        billboard.Size = UDim2.new(0, 100, 0, 40)
-        billboard.StudsOffset = Vector3.new(0, 3, 0)
-        billboard.AlwaysOnTop = true
-        billboard.Parent = player.Character
-        
-        local label = Instance.new("TextLabel")
-        label.Size = UDim2.new(1, 0, 1, 0)
-        label.Text = player.Name
-        label.TextColor3 = Color3.fromRGB(255, 255, 255)
-        label.BackgroundTransparency = 1
-        label.Parent = billboard
-        
-        print("ESP created for:", player.Name)
-    end
-end
-
-for _, player in pairs(Players:GetPlayers()) do
-    if player ~= Players.LocalPlayer then
-        createESP(player)
-    end
-end
-
-Players.PlayerAdded:Connect(function(player)
-    if player ~= Players.LocalPlayer then
-        player.CharacterAdded:Connect(function()
-            wait(1)
-            createESP(player)
-        end)
-    end
-end)
-
-print("ESP script loaded successfully!")`,
-                        matched: ["esp", "pvp", "highlight"]
-                    },
-                    {
-                        _id: "sample4",
-                        title: "Fly Script - Universal",
-                        game: {
-                            _id: "game4",
-                            name: "Any Game",
-                            imageUrl: ""
-                        },
-                        slug: "fly-script-universal",
-                        verified: true,
-                        key: false,
-                        views: 18000,
-                        scriptType: "Open Source",
-                        isUniversal: true,
-                        isPatched: false,
-                        createdAt: new Date(Date.now() - 259200000).toISOString(),
-                        updatedAt: new Date(Date.now() - 259200000).toISOString(),
-                        image: "",
-                        script: `-- Universal Fly Script
--- Works in most Roblox games
-
-local Players = game:GetService("Players")
-local UserInputService = game:GetService("UserInputService")
-local RunService = game:GetService("RunService")
-
-local player = Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-local humanoid = character:WaitForChild("Humanoid")
-local root = character:WaitForChild("HumanoidRootPart")
-
-local flySpeed = 50
-local flying = false
-local velocity = Vector3.new(0, 0, 0)
-
-local function fly()
-    flying = not flying
-    if flying then
-        humanoid.PlatformStand = true
-        print("Fly enabled!")
-    else
-        humanoid.PlatformStand = false
-        velocity = Vector3.new(0, 0, 0)
-        print("Fly disabled!")
-    end
-end
-
-UserInputService.InputBegan:Connect(function(input)
-    if input.KeyCode == Enum.KeyCode.F then
-        fly()
-    end
-end)
-
-RunService.Stepped:Connect(function()
-    if flying then
-        local forward = UserInputService:IsKeyDown(Enum.KeyCode.W) and 1 or 0
-        local backward = UserInputService:IsKeyDown(Enum.KeyCode.S) and 1 or 0
-        local left = UserInputService:IsKeyDown(Enum.KeyCode.A) and 1 or 0
-        local right = UserInputService:IsKeyDown(Enum.KeyCode.D) and 1 or 0
-        local up = UserInputService:IsKeyDown(Enum.KeyCode.Space) and 1 or 0
-        local down = UserInputService:IsKeyDown(Enum.KeyCode.LeftShift) and 1 or 0
-        
-        local moveDirection = Vector3.new(
-            right - left,
-            up - down,
-            backward - forward
-        )
-        
-        velocity = moveDirection.Unit * flySpeed
-        root.Velocity = velocity
-    end
-end)
-
-print("Fly script loaded! Press F to toggle")`,
-                        matched: ["fly", "universal", "script"]
-                    }
-                ];
+                this.startQueueProcessor();
             }
             
             initializeElements() {
                 this.elements = {
                     searchInput: document.getElementById('searchInput'),
                     searchBtn: document.getElementById('searchBtn'),
+                    fetchAllPages: document.getElementById('fetchAllPages'),
+                    extractLoadstrings: document.getElementById('extractLoadstrings'),
+                    strictFilter: document.getElementById('strictFilter'),
                     statusText: document.getElementById('statusText'),
                     progressBar: document.getElementById('progressBar'),
                     progressFill: document.getElementById('progressFill'),
@@ -1049,25 +804,23 @@ print("Fly script loaded! Press F to toggle")`,
                     emptyState: document.getElementById('emptyState'),
                     scriptsLoading: document.getElementById('scriptsLoading'),
                     statsText: document.getElementById('statsText'),
+                    analysisInfo: document.getElementById('analysisInfo'),
                     selectedScriptTitle: document.getElementById('selectedScriptTitle'),
                     selectedScriptInfo: document.getElementById('selectedScriptInfo'),
                     scriptContent: document.getElementById('scriptContent'),
-                    loadstringInfo: document.getElementById('loadstringInfo'),
                     copyBtn: document.getElementById('copyBtn'),
                     toast: document.getElementById('toast'),
-                    toastMessage: document.getElementById('toastMessage'),
-                    demoWarning: document.getElementById('demoWarning'),
-                    apiModeInfo: document.getElementById('apiModeInfo')
+                    toastMessage: document.getElementById('toastMessage')
                 };
             }
             
             setupEventListeners() {
-                this.elements.searchBtn.addEventListener('click', () => this.searchScripts());
+                this.elements.searchBtn.addEventListener('click', () => this.searchAllScripts());
                 this.elements.searchInput.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') this.searchScripts();
+                    if (e.key === 'Enter') this.searchAllScripts();
                 });
                 
-                this.elements.copyBtn.addEventListener('click', () => this.copyScript());
+                this.elements.copyBtn.addEventListener('click', () => this.copyScriptCode());
                 
                 // Sort buttons
                 document.querySelectorAll('.sort-btn').forEach(btn => {
@@ -1079,58 +832,29 @@ print("Fly script loaded! Press F to toggle")`,
                     });
                 });
                 
-                // API mode buttons
-                document.querySelectorAll('.api-btn').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        document.querySelectorAll('.api-btn').forEach(b => b.classList.remove('active'));
-                        e.target.classList.add('active');
-                        this.currentApi = e.target.dataset.api;
-                        this.updateApiMode();
-                    });
-                });
-                
-                // Add example search
-                this.elements.searchInput.placeholder = "Try: 'admin', 'fly', 'esp', 'auto farm'";
-                
-                this.updateApiMode();
+                // Set example placeholder
+                this.elements.searchInput.placeholder = "Try: '99 nights', 'admin panel', 'auto farm', 'gui library'";
             }
             
-            updateApiMode() {
-                const apiInfo = {
-                    'search': 'Searching all scripts',
-                    'fetch': 'Fetching latest scripts',
-                    'demo': 'Demo Mode (sample data)'
-                };
-                
-                this.elements.apiModeInfo.textContent = apiInfo[this.currentApi];
-                
-                if (this.currentApi === 'demo') {
-                    this.elements.demoWarning.style.display = 'block';
-                    this.elements.searchBtn.innerHTML = '<i class="fas fa-play"></i> Load Demo Data';
-                    this.elements.searchInput.disabled = false;
-                } else if (this.currentApi === 'fetch') {
-                    this.elements.demoWarning.style.display = 'none';
-                    this.elements.searchBtn.innerHTML = '<i class="fas fa-search"></i> Fetch Latest Scripts';
-                    this.elements.searchInput.disabled = false;
-                    this.elements.searchInput.placeholder = "Optional filter (leave empty for all)";
-                } else {
-                    this.elements.demoWarning.style.display = 'none';
-                    this.elements.searchBtn.innerHTML = '<i class="fas fa-search"></i> Search All Scripts';
-                    this.elements.searchInput.disabled = false;
-                    this.elements.searchInput.placeholder = "Search term (e.g., 'admin')";
-                }
+            startQueueProcessor() {
+                // Process fetch queue with delays
+                setInterval(() => {
+                    if (this.fetchQueue.length > 0 && !this.processingQueue) {
+                        this.processNextInQueue();
+                    }
+                }, 500);
             }
             
-            async searchScripts() {
+            async searchAllScripts() {
                 if (this.isSearching) {
-                    this.showToast('Already searching. Please wait...', 'warning');
+                    this.showToast('Already fetching scripts...', 'warning');
                     return;
                 }
                 
                 const searchTerm = this.elements.searchInput.value.trim();
                 
-                if (this.currentApi === 'search' && !searchTerm) {
-                    this.showStatus('Please enter a search term for Search mode', 'error');
+                if (!searchTerm) {
+                    this.showStatus('Please enter a search term', 'error');
                     return;
                 }
                 
@@ -1138,265 +862,236 @@ print("Fly script loaded! Press F to toggle")`,
                 this.showLoading(true);
                 this.clearResults();
                 
-                this.showStatus(`Fetching scripts...`, 'loading');
-                this.updateProgress(10, 'Starting search...');
+                this.showStatus(`Searching for ALL scripts containing "${searchTerm}"...`, 'loading');
+                this.updateProgress(5, 'Starting search...');
                 
                 try {
-                    if (this.currentApi === 'demo') {
-                        await this.fetchDemoData(searchTerm);
-                    } else {
-                        await this.fetchRealData(searchTerm);
-                    }
+                    // Start fetching ALL pages
+                    await this.fetchAllPages(searchTerm);
+                    
                 } catch (error) {
                     console.error('Search error:', error);
-                    this.showStatus(`Error: ${error.message}. Switching to demo mode...`, 'error');
-                    
-                    // Fall back to demo mode
-                    document.querySelectorAll('.api-btn').forEach(b => b.classList.remove('active'));
-                    document.querySelector('[data-api="demo"]').classList.add('active');
-                    this.currentApi = 'demo';
-                    this.updateApiMode();
-                    
-                    await this.fetchDemoData(searchTerm);
-                } finally {
+                    this.showStatus(`Error: ${error.message}`, 'error');
+                    this.showLoading(false);
                     this.isSearching = false;
                 }
             }
             
-            async fetchDemoData(searchTerm) {
-                this.updateProgress(30, 'Loading demo data...');
+            async fetchAllPages(searchTerm) {
+                this.fetchQueue = [];
+                this.scripts = [];
+                this.currentPage = 1;
                 
-                // Simulate API delay
-                await new Promise(resolve => setTimeout(resolve, 1000));
+                // First, get initial page to know total pages
+                this.updateProgress(10, 'Fetching page 1...');
                 
-                this.scripts = [...this.sampleData];
+                const firstPageData = await this.fetchPage(searchTerm, 1);
                 
-                // Apply search filter if provided
-                if (searchTerm) {
-                    const searchLower = searchTerm.toLowerCase();
-                    this.scripts = this.scripts.filter(script => {
-                        const title = (script.title || '').toLowerCase();
-                        const gameName = (script.game?.name || '').toLowerCase();
-                        const scriptText = (script.script || '').toLowerCase();
-                        const loadstringContent = (script.loadstringContent || '').toLowerCase();
-                        const matched = script.matched || [];
-                        
-                        // Check if any part matches
-                        return title.includes(searchLower) ||
-                               gameName.includes(searchLower) ||
-                               scriptText.includes(searchLower) ||
-                               loadstringContent.includes(searchLower) ||
-                               matched.some(m => m.includes(searchLower));
+                if (!firstPageData || !firstPageData.result) {
+                    throw new Error('No data received from API');
+                }
+                
+                this.totalPages = firstPageData.result.totalPages || 1;
+                this.scripts = firstPageData.result.scripts || [];
+                
+                this.updateProgress(20, `Found ${this.totalPages} total pages. Fetching all...`);
+                
+                // Queue up all remaining pages
+                for (let page = 2; page <= this.totalPages; page++) {
+                    this.fetchQueue.push({
+                        type: 'page',
+                        searchTerm: searchTerm,
+                        page: page
                     });
                 }
                 
-                this.updateProgress(70, 'Analyzing scripts for open source...');
+                // Wait for all pages to be fetched
+                await this.waitForQueueCompletion();
                 
-                // Analyze each script
-                for (let i = 0; i < this.scripts.length; i++) {
-                    const script = this.scripts[i];
-                    await this.analyzeScript(script);
-                    
-                    const progress = 70 + (i / this.scripts.length * 25);
-                    this.updateProgress(progress, `Analyzing script ${i + 1}/${this.scripts.length}`);
-                }
+                this.updateProgress(70, `Fetched ${this.scripts.length} total scripts. Analyzing...`);
+                this.elements.analysisInfo.textContent = `Fetched ${this.scripts.length} scripts. Analyzing for open source...`;
+                
+                // Analyze all scripts for open source
+                await this.analyzeAllScripts();
                 
                 this.filterOpenSourceScripts();
                 this.sortScripts();
                 
-                const count = this.filteredScripts.length;
-                if (count === 0) {
-                    this.showStatus('No open-source scripts found', 'warning');
-                } else {
-                    this.showStatus(`Found ${count} open-source scripts`, 'success');
-                }
+                const openSourceCount = this.filteredScripts.length;
+                const totalCount = this.scripts.length;
                 
-                this.updateProgress(100, 'Done!');
+                this.showStatus(`Found ${openSourceCount} open-source scripts out of ${totalCount} total`, 'success');
+                this.elements.analysisInfo.textContent = `${openSourceCount} open-source scripts found`;
+                
+                this.updateProgress(100, 'Complete!');
                 setTimeout(() => this.showLoading(false), 1000);
+                this.isSearching = false;
             }
             
-            async fetchRealData(searchTerm) {
-                let apiUrl;
-                
-                if (this.currentApi === 'fetch') {
-                    apiUrl = 'https://scriptblox.com/api/script/fetch';
-                    if (searchTerm) {
-                        apiUrl += `?q=${encodeURIComponent(searchTerm)}`;
-                    }
-                } else {
-                    apiUrl = `https://scriptblox.com/api/script/search?q=${encodeURIComponent(searchTerm)}`;
-                }
-                
-                this.updateProgress(20, 'Connecting to API...');
-                
-                // Try to fetch data
-                let data;
+            async fetchPage(searchTerm, page) {
                 try {
-                    // Try CORS proxy first
-                    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(apiUrl)}`;
-                    const response = await fetch(proxyUrl, {
-                        headers: {
-                            'Accept': 'application/json'
-                        }
-                    });
+                    const url = `https://scriptblox.com/api/script/search?q=${encodeURIComponent(searchTerm)}&page=${page}`;
                     
-                    if (!response.ok) throw new Error(`Proxy error: ${response.status}`);
+                    // Use CORS proxy
+                    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
                     
-                    const proxyData = await response.json();
-                    data = JSON.parse(proxyData.contents);
+                    const response = await fetch(proxyUrl);
+                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
                     
-                } catch (proxyError) {
-                    console.warn('Proxy failed:', proxyError);
+                    const data = await response.json();
+                    const parsedData = JSON.parse(data.contents);
                     
-                    // Try direct fetch (may fail due to CORS)
-                    try {
-                        const response = await fetch(apiUrl, {
-                            mode: 'cors',
-                            headers: {
-                                'Accept': 'application/json'
-                            }
-                        });
-                        
-                        if (!response.ok) throw new Error(`Direct error: ${response.status}`);
-                        data = await response.json();
-                        
-                    } catch (directError) {
-                        console.warn('Direct fetch failed:', directError);
-                        throw new Error('Cannot access API due to CORS restrictions');
-                    }
+                    return parsedData;
+                    
+                } catch (error) {
+                    console.warn(`Failed to fetch page ${page}:`, error);
+                    return { result: { scripts: [] } };
                 }
-                
-                if (data.message) {
-                    throw new Error(data.message);
-                }
-                
-                this.scripts = data.result?.scripts || [];
-                
-                if (this.scripts.length === 0) {
-                    throw new Error('No scripts found');
-                }
-                
-                this.updateProgress(40, `Found ${this.scripts.length} scripts. Fetching details...`);
-                
-                // Fetch detailed information for each script
-                for (let i = 0; i < this.scripts.length; i++) {
-                    const script = this.scripts[i];
-                    
-                    try {
-                        if (script.slug) {
-                            // Try to get individual script data
-                            const detailUrl = `https://scriptblox.com/api/script/${script.slug}`;
-                            const proxyDetailUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(detailUrl)}`;
-                            
-                            const detailResponse = await fetch(proxyDetailUrl);
-                            if (detailResponse.ok) {
-                                const detailData = await detailResponse.json();
-                                const parsedDetail = JSON.parse(detailData.contents);
-                                
-                                if (parsedDetail.script) {
-                                    // Merge script data
-                                    script.script = parsedDetail.script.script || script.script;
-                                    script.features = parsedDetail.script.features;
-                                    script.tags = parsedDetail.script.tags;
-                                    script.owner = parsedDetail.script.owner;
-                                    script.likeCount = parsedDetail.script.likeCount;
-                                    script.dislikeCount = parsedDetail.script.dislikeCount;
-                                }
-                            }
-                        }
-                    } catch (error) {
-                        console.warn(`Failed to fetch details for ${script.slug}:`, error);
-                    }
-                    
-                    const progress = 40 + (i / this.scripts.length * 30);
-                    this.updateProgress(progress, `Fetching details ${i + 1}/${this.scripts.length}`);
-                    
-                    // Add delay to avoid rate limiting
-                    await new Promise(resolve => setTimeout(resolve, 500));
-                }
-                
-                this.updateProgress(70, 'Analyzing scripts for open source...');
-                
-                // Analyze scripts
-                for (let i = 0; i < this.scripts.length; i++) {
-                    const script = this.scripts[i];
-                    await this.analyzeScript(script);
-                    
-                    const progress = 70 + (i / this.scripts.length * 25);
-                    this.updateProgress(progress, `Analyzing ${i + 1}/${this.scripts.length}`);
-                }
-                
-                this.filterOpenSourceScripts();
-                this.sortScripts();
-                
-                const count = this.filteredScripts.length;
-                this.showStatus(`Found ${count} open-source scripts`, 'success');
-                
-                this.updateProgress(100, 'Analysis complete!');
-                setTimeout(() => this.showLoading(false), 1000);
             }
             
-            async analyzeScript(script) {
+            async processNextInQueue() {
+                if (this.fetchQueue.length === 0) return;
+                
+                this.processingQueue = true;
+                const item = this.fetchQueue.shift();
+                
+                try {
+                    if (item.type === 'page') {
+                        const pageData = await this.fetchPage(item.searchTerm, item.page);
+                        if (pageData.result?.scripts) {
+                            this.scripts.push(...pageData.result.scripts);
+                            
+                            // Update progress
+                            const fetched = this.scripts.length;
+                            const estimatedTotal = 20 * this.totalPages; // Estimate 20 per page
+                            const progress = 20 + (fetched / estimatedTotal * 45);
+                            this.updateProgress(Math.min(progress, 65), `Fetched ${fetched} scripts...`);
+                        }
+                    }
+                } catch (error) {
+                    console.warn('Queue item failed:', error);
+                }
+                
+                this.processingQueue = false;
+            }
+            
+            async waitForQueueCompletion() {
+                return new Promise((resolve) => {
+                    const checkInterval = setInterval(() => {
+                        if (this.fetchQueue.length === 0 && !this.processingQueue) {
+                            clearInterval(checkInterval);
+                            resolve();
+                        }
+                    }, 1000);
+                });
+            }
+            
+            async analyzeAllScripts() {
+                const extractLoadstrings = this.elements.extractLoadstrings.checked;
+                const strictFilter = this.elements.strictFilter.checked;
+                
+                let analyzedCount = 0;
+                const totalScripts = this.scripts.length;
+                
+                for (let i = 0; i < this.scripts.length; i++) {
+                    const script = this.scripts[i];
+                    
+                    // Update progress
+                    analyzedCount++;
+                    const progress = 70 + (analyzedCount / totalScripts * 25);
+                    this.updateProgress(progress, `Analyzing ${analyzedCount}/${totalScripts}...`);
+                    this.elements.analysisInfo.textContent = `Analyzing ${analyzedCount}/${totalScripts} scripts`;
+                    
+                    await this.analyzeScript(script, extractLoadstrings, strictFilter);
+                    
+                    // Small delay to avoid rate limiting
+                    await new Promise(resolve => setTimeout(resolve, 50));
+                }
+            }
+            
+            async analyzeScript(script, extractLoadstrings, strictFilter) {
                 const scriptContent = script.script || '';
                 
                 if (!scriptContent) {
                     script.isOpenSource = false;
+                    script.cleanContent = '';
                     return;
                 }
                 
-                // Check for loadstrings
-                const loadstringMatch = scriptContent.match(/loadstring\(([^)]+)\)/);
-                if (loadstringMatch) {
-                    script.containsLoadstring = true;
+                // Extract loadstring content if enabled
+                if (extractLoadstrings) {
+                    const loadstringContent = await this.extractLoadstringContent(scriptContent);
+                    if (loadstringContent) {
+                        script.containsLoadstring = true;
+                        script.loadstringContent = loadstringContent;
+                        script.analyzedContent = loadstringContent;
+                    } else {
+                        script.analyzedContent = scriptContent;
+                    }
+                } else {
+                    script.analyzedContent = scriptContent;
+                }
+                
+                // Check if it's open source
+                script.isOpenSource = this.isOpenSource(script.analyzedContent, strictFilter);
+                
+                // Create clean content for display (no broken HTML)
+                script.cleanContent = this.createCleanContent(script.analyzedContent);
+            }
+            
+            async extractLoadstringContent(content) {
+                // Look for loadstring patterns
+                const loadstringRegex = /loadstring\(([^)]+)\)/g;
+                const matches = [...content.matchAll(loadstringRegex)];
+                
+                if (matches.length === 0) return null;
+                
+                // Try to extract URL and fetch content
+                for (const match of matches) {
+                    const loadstringArg = match[1].trim();
+                    const urlMatch = loadstringArg.match(/['"](https?:\/\/[^'"]+)['"]/);
                     
-                    // Try to extract URL
-                    const urlMatch = loadstringMatch[1].match(/['"](https?:\/\/[^'"]+)['"]/);
                     if (urlMatch) {
-                        script.loadstringUrl = urlMatch[1];
+                        const url = urlMatch[1];
                         
-                        // Try to fetch loadstring content
-                        if (!this.loadstringCache.has(script.loadstringUrl)) {
-                            try {
-                                const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(script.loadstringUrl)}`;
-                                const response = await fetch(proxyUrl, { timeout: 5000 });
+                        // Check cache first
+                        if (this.loadstringCache.has(url)) {
+                            return this.loadstringCache.get(url);
+                        }
+                        
+                        try {
+                            // Try to fetch loadstring content
+                            const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
+                            const response = await fetch(proxyUrl, { timeout: 10000 });
+                            
+                            if (response.ok) {
+                                const data = await response.json();
+                                const fetchedContent = data.contents;
                                 
-                                if (response.ok) {
-                                    const data = await response.json();
-                                    const content = data.contents;
-                                    
-                                    if (content && content.length > 0) {
-                                        this.loadstringCache.set(script.loadstringUrl, content);
-                                        script.loadstringContent = content;
-                                        script.analyzedContent = content;
-                                    }
+                                if (fetchedContent && fetchedContent.length > 0) {
+                                    this.loadstringCache.set(url, fetchedContent);
+                                    return fetchedContent;
                                 }
-                            } catch (error) {
-                                console.warn('Failed to fetch loadstring:', error);
                             }
-                        } else {
-                            script.loadstringContent = this.loadstringCache.get(script.loadstringUrl);
-                            script.analyzedContent = script.loadstringContent;
+                        } catch (error) {
+                            console.warn('Failed to fetch loadstring:', error);
                         }
                     }
                 }
                 
-                // Use loadstring content if available, otherwise use original script
-                const contentToAnalyze = script.loadstringContent || scriptContent;
-                script.analyzedContent = contentToAnalyze;
-                
-                // Check if it's open source
-                script.isOpenSource = this.isOpenSource(contentToAnalyze);
+                return null;
             }
             
-            isOpenSource(content) {
-                if (!content || content.trim().length < 50) {
+            isOpenSource(content, strict) {
+                if (!content || content.trim().length < 20) {
                     return false;
                 }
                 
-                const contentLower = content.toLowerCase();
+                const contentStr = content.toString();
+                const contentLower = contentStr.toLowerCase();
                 
-                // Obfuscation patterns to reject
-                const obfuscationPatterns = [
+                // Reject obfuscated/minified code
+                const rejectionPatterns = [
                     /\[char\]/i,
                     /fromcharcode/i,
                     /\\x[a-f0-9]{2}/i,
@@ -1404,54 +1099,65 @@ print("Fly script loaded! Press F to toggle")`,
                     /\|\|.*\|\|/,
                     /\w{50,}/,
                     /eval\(.*function\(\)\{/i,
-                    /local\s+[a-f0-9]{16,}/i
+                    /loadstring\(.*loadstring/i,
+                    /local\s+[a-f0-9]{16,}/i,
+                    /function\(\)\{.*\}\(\)/i
                 ];
                 
-                // Check for obfuscation
-                for (const pattern of obfuscationPatterns) {
-                    if (pattern.test(content)) {
+                for (const pattern of rejectionPatterns) {
+                    if (pattern.test(contentStr)) {
                         return false;
                     }
                 }
                 
                 // Check for minified code (very few line breaks)
-                const lines = content.split('\n');
-                if (lines.length < 5 && content.length > 200) {
+                const lines = contentStr.split('\n');
+                if (lines.length < 3 && contentStr.length > 100) {
                     return false;
                 }
                 
-                // Check for readable Lua/Roblox patterns
-                const readablePatterns = [
+                // Look for readable Lua/Roblox code patterns
+                const positivePatterns = [
                     /local\s+\w+\s*=/,
                     /function\s+\w+\(/,
                     /game:GetService\(/,
                     /workspace/,
                     /player/i,
                     /wait\(/,
-                    /print\(/
+                    /print\(/,
+                    /instance\.new/i,
+                    /vector3/i,
+                    /cframe/i,
+                    /for\s+\w+\s*in\s+pairs/,
+                    /if\s+.*\s+then/
                 ];
                 
-                let readableScore = 0;
-                for (const pattern of readablePatterns) {
-                    if (pattern.test(content)) {
-                        readableScore++;
+                let positiveScore = 0;
+                for (const pattern of positivePatterns) {
+                    if (pattern.test(contentStr)) {
+                        positiveScore++;
                     }
                 }
                 
-                // Check for comments (good sign)
-                const hasComments = /--/.test(content) || /\/\//.test(content);
+                // Check for comments (good sign of open source)
+                const hasComments = /--/.test(contentStr) || /\/\//.test(contentStr);
                 
-                // Check for proper indentation
-                const hasIndentation = /\t/.test(content) || /    /.test(content);
-                
-                // Consider it open source if:
-                // 1. Has at least 3 readable patterns OR has comments
-                // 2. Has indentation OR is reasonably structured
-                // 3. Not obfuscated
-                // 4. Has reasonable length
-                return (readableScore >= 3 || hasComments) &&
-                       (hasIndentation || lines.length >= 3) &&
-                       content.length >= 100;
+                // For strict mode, require more positive indicators
+                if (strict) {
+                    return positiveScore >= 4 && (hasComments || lines.length >= 5);
+                } else {
+                    return positiveScore >= 2;
+                }
+            }
+            
+            createCleanContent(content) {
+                // Return clean text without any HTML
+                return content.toString()
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;')
+                    .replace(/'/g, '&#039;');
             }
             
             filterOpenSourceScripts() {
@@ -1466,20 +1172,20 @@ print("Fly script loaded! Press F to toggle")`,
                         this.filteredScripts.sort((a, b) => (b.views || 0) - (a.views || 0));
                         break;
                     case 'date':
-                        this.filteredScripts.sort((a, b) => 
-                            new Date(b.createdAt || 0) - new Date(a.createdAt || 0)
-                        );
+                        this.filteredScripts.sort((a, b) => {
+                            const dateA = new Date(a.createdAt || 0);
+                            const dateB = new Date(b.createdAt || 0);
+                            return dateB - dateA;
+                        });
                         break;
                     case 'relevance':
                     default:
-                        // Sort by loadstring content first (more valuable), then views
+                        // Sort by loadstring content first, then views
                         this.filteredScripts.sort((a, b) => {
-                            const aHasLoadstring = a.loadstringContent ? 2 : 0;
-                            const bHasLoadstring = b.loadstringContent ? 2 : 0;
+                            const aScore = (a.loadstringContent ? 2 : 0) + (a.verified ? 1 : 0);
+                            const bScore = (b.loadstringContent ? 2 : 0) + (b.verified ? 1 : 0);
                             
-                            if (bHasLoadstring !== aHasLoadstring) {
-                                return bHasLoadstring - aHasLoadstring;
-                            }
+                            if (bScore !== aScore) return bScore - aScore;
                             return (b.views || 0) - (a.views || 0);
                         });
                         break;
@@ -1494,8 +1200,7 @@ print("Fly script loaded! Press F to toggle")`,
                 const empty = this.elements.emptyState;
                 
                 // Clear existing tabs
-                const existingTabs = container.querySelectorAll('.script-tab');
-                existingTabs.forEach(tab => tab.remove());
+                container.querySelectorAll('.script-tab').forEach(tab => tab.remove());
                 
                 // Hide/show empty state
                 if (this.filteredScripts.length === 0) {
@@ -1505,13 +1210,13 @@ print("Fly script loaded! Press F to toggle")`,
                     empty.style.display = 'none';
                     loading.style.display = 'none';
                     
-                    // Create new tabs
+                    // Create tabs for ALL open source scripts
                     this.filteredScripts.forEach((script, index) => {
                         const tab = this.createScriptTab(script, index);
                         container.appendChild(tab);
                     });
                     
-                    // Select first script automatically
+                    // Auto-select first script
                     if (this.filteredScripts.length > 0 && !this.selectedScript) {
                         setTimeout(() => {
                             const firstTab = container.querySelector('.script-tab');
@@ -1522,9 +1227,11 @@ print("Fly script loaded! Press F to toggle")`,
                 
                 // Update stats
                 const loadstringCount = this.filteredScripts.filter(s => s.loadstringContent).length;
-                const stats = `Found: ${this.filteredScripts.length} open source scripts`;
-                const extra = loadstringCount > 0 ? ` (${loadstringCount} with loadstrings)` : '';
-                this.elements.statsText.textContent = stats + extra;
+                this.elements.statsText.textContent = `Found: ${this.filteredScripts.length} open source scripts`;
+                
+                if (loadstringCount > 0) {
+                    this.elements.analysisInfo.textContent += ` (${loadstringCount} with loadstrings)`;
+                }
             }
             
             createScriptTab(script, index) {
@@ -1532,20 +1239,21 @@ print("Fly script loaded! Press F to toggle")`,
                 tab.className = 'script-tab';
                 tab.dataset.index = index;
                 
-                // Truncate title
+                // Get title (limit to 70 chars)
                 let title = script.title || 'Untitled Script';
-                if (title.length > 50) {
-                    title = title.substring(0, 47) + '...';
+                if (title.length > 70) {
+                    title = title.substring(0, 67) + '...';
                 }
                 
                 // Format date
                 const date = script.createdAt ? 
                     new Date(script.createdAt).toLocaleDateString('en-US', { 
                         month: 'short', 
-                        day: 'numeric' 
-                    }) : 'Unknown';
+                        day: 'numeric',
+                        year: 'numeric'
+                    }) : 'Unknown date';
                 
-                // Badges
+                // Create badges
                 let badges = '';
                 
                 if (script.loadstringContent) {
@@ -1567,10 +1275,13 @@ print("Fly script loaded! Press F to toggle")`,
                     <div class="script-info">
                         <div class="script-title">${this.escapeHtml(title)}</div>
                         <div class="script-meta">
-                            <span class="script-game">${this.escapeHtml(script.game?.name || 'Unknown')}</span>
-                            <span><i class="far fa-eye"></i> ${script.views || 0}</span>
-                            <span><i class="far fa-calendar"></i> ${date}</span>
+                            <span class="script-game">${this.escapeHtml(script.game?.name || 'Various')}</span>
                             ${badges}
+                        </div>
+                        <div class="script-stats">
+                            <span><i class="far fa-eye"></i> ${script.views?.toLocaleString() || 0}</span>
+                            <span><i class="far fa-calendar"></i> ${date}</span>
+                            ${script.scriptType ? `<span>${script.scriptType}</span>` : ''}
                         </div>
                     </div>
                 `;
@@ -1580,7 +1291,7 @@ print("Fly script loaded! Press F to toggle")`,
             }
             
             selectScript(script, tabElement) {
-                // Update selected tab styling
+                // Update tab selection
                 document.querySelectorAll('.script-tab').forEach(t => {
                     t.classList.remove('active');
                 });
@@ -1588,41 +1299,32 @@ print("Fly script loaded! Press F to toggle")`,
                 
                 this.selectedScript = script;
                 
-                // Get content to display
-                let displayContent = '';
-                let isLoadstring = false;
-                
-                if (script.loadstringContent) {
-                    displayContent = script.loadstringContent;
-                    isLoadstring = true;
-                } else {
-                    displayContent = script.script || 'No script content available';
-                }
+                // Get clean content to display
+                const displayContent = script.cleanContent || 'No clean content available';
                 
                 // Update UI
-                this.elements.loadstringInfo.style.display = isLoadstring ? 'block' : 'none';
-                
                 let title = script.title || 'Untitled Script';
-                if (title.length > 60) {
-                    title = title.substring(0, 57) + '...';
+                if (title.length > 80) {
+                    title = title.substring(0, 77) + '...';
                 }
                 
                 this.elements.selectedScriptTitle.textContent = title;
                 
-                // Build info
+                // Build info string
                 const infoParts = [];
                 if (script.game?.name) infoParts.push(script.game.name);
-                if (script.views) infoParts.push(`${script.views} views`);
-                if (isLoadstring) infoParts.push('From Loadstring');
+                if (script.views) infoParts.push(`${script.views.toLocaleString()} views`);
+                if (script.loadstringContent) infoParts.push('Extracted from loadstring');
                 if (script.scriptType) infoParts.push(script.scriptType);
+                if (script.createdAt) {
+                    const date = new Date(script.createdAt).toLocaleDateString();
+                    infoParts.push(date);
+                }
                 
                 this.elements.selectedScriptInfo.textContent = infoParts.join(' • ');
                 
-                // Display content - CLEAN TEXT WITHOUT BROKEN HTML
-                this.elements.scriptContent.textContent = displayContent;
-                
-                // Apply simple syntax highlighting
-                this.applyCleanSyntaxHighlighting(displayContent);
+                // Display CLEAN CODE (no broken HTML)
+                this.elements.scriptContent.innerHTML = displayContent;
                 
                 // Enable copy button
                 this.elements.copyBtn.disabled = false;
@@ -1630,72 +1332,24 @@ print("Fly script loaded! Press F to toggle")`,
                 this.showStatus('Script loaded', 'success');
             }
             
-            applyCleanSyntaxHighlighting(content) {
-                // Create a clean text display without broken HTML
-                const lines = content.split('\n');
-                let highlighted = '';
-                
-                for (const line of lines) {
-                    // Simple keyword highlighting
-                    let highlightedLine = this.escapeHtml(line);
-                    
-                    // Highlight Lua keywords
-                    const keywords = ['local', 'function', 'end', 'if', 'then', 'else', 'elseif', 
-                                    'for', 'while', 'do', 'repeat', 'until', 'break', 'return', 
-                                    'in', 'not', 'and', 'or', 'nil', 'true', 'false'];
-                    
-                    keywords.forEach(keyword => {
-                        const regex = new RegExp(`\\b(${keyword})\\b`, 'g');
-                        highlightedLine = highlightedLine.replace(regex, `<span style="color: #ff7b72; font-weight: bold;">$1</span>`);
-                    });
-                    
-                    // Highlight strings
-                    highlightedLine = highlightedLine.replace(/(["'])(?:(?=(\\?))\2.)*?\1/g, 
-                        `<span style="color: #a5d6ff;">$&</span>`);
-                    
-                    // Highlight comments
-                    if (highlightedLine.includes('--')) {
-                        const commentIndex = highlightedLine.indexOf('--');
-                        highlightedLine = highlightedLine.substring(0, commentIndex) + 
-                                         `<span style="color: #8b949e; font-style: italic;">` + 
-                                         highlightedLine.substring(commentIndex) + 
-                                         `</span>`;
-                    }
-                    
-                    // Highlight numbers
-                    highlightedLine = highlightedLine.replace(/\b(\d+\.?\d*)\b/g, 
-                        `<span style="color: #79c0ff;">$1</span>`);
-                    
-                    highlighted += highlightedLine + '\n';
-                }
-                
-                this.elements.scriptContent.innerHTML = highlighted;
-            }
-            
-            async copyScript() {
+            async copyScriptCode() {
                 if (!this.selectedScript) {
                     this.showToast('No script selected', 'error');
                     return;
                 }
                 
-                let contentToCopy = '';
-                
-                if (this.selectedScript.loadstringContent) {
-                    contentToCopy = this.selectedScript.loadstringContent;
-                } else {
-                    contentToCopy = this.selectedScript.script || '';
-                }
+                const contentToCopy = this.selectedScript.analyzedContent || this.selectedScript.script || '';
                 
                 if (!contentToCopy) {
-                    this.showToast('No script content to copy', 'error');
+                    this.showToast('No code to copy', 'error');
                     return;
                 }
                 
                 try {
                     await navigator.clipboard.writeText(contentToCopy);
-                    this.showToast('Script copied to clipboard!', 'success');
+                    this.showToast('Code copied to clipboard!', 'success');
                 } catch (error) {
-                    // Fallback for older browsers
+                    // Fallback
                     const textArea = document.createElement('textarea');
                     textArea.value = contentToCopy;
                     document.body.appendChild(textArea);
@@ -1703,7 +1357,7 @@ print("Fly script loaded! Press F to toggle")`,
                     document.execCommand('copy');
                     document.body.removeChild(textArea);
                     
-                    this.showToast('Script copied to clipboard!', 'success');
+                    this.showToast('Code copied!', 'success');
                 }
             }
             
@@ -1711,19 +1365,20 @@ print("Fly script loaded! Press F to toggle")`,
                 this.scripts = [];
                 this.filteredScripts = [];
                 this.selectedScript = null;
+                this.fetchQueue = [];
                 
                 this.elements.scriptsList.querySelectorAll('.script-tab').forEach(tab => tab.remove());
                 this.elements.emptyState.style.display = 'block';
                 this.elements.scriptsLoading.style.display = 'none';
                 
                 this.elements.selectedScriptTitle.textContent = 'Select a Script';
-                this.elements.selectedScriptInfo.textContent = 'Click on a script from the list to view its content';
-                this.elements.scriptContent.textContent = 'Select a script from the left panel to view its content...';
-                this.elements.loadstringInfo.style.display = 'none';
+                this.elements.selectedScriptInfo.textContent = 'Click on any script to view its clean, open-source code';
+                this.elements.scriptContent.textContent = 'Select a script to view its clean, open-source code...';
                 
                 this.elements.copyBtn.disabled = true;
                 
                 this.elements.statsText.textContent = 'Found: 0 open source scripts';
+                this.elements.analysisInfo.textContent = 'Ready to search';
             }
             
             showLoading(show) {
@@ -1734,9 +1389,9 @@ print("Fly script loaded! Press F to toggle")`,
                 if (show) {
                     progressBar.style.display = 'block';
                     progressText.style.display = 'block';
-                    this.elements.progressFill.style.width = '10%';
+                    this.elements.progressFill.style.width = '5%';
                     searchBtn.disabled = true;
-                    searchBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Searching...';
+                    searchBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Fetching ALL Scripts...';
                     this.elements.scriptsLoading.style.display = 'block';
                     this.elements.emptyState.style.display = 'none';
                 } else {
@@ -1745,23 +1400,15 @@ print("Fly script loaded! Press F to toggle")`,
                         progressText.style.display = 'none';
                         this.elements.progressFill.style.width = '0%';
                         searchBtn.disabled = false;
-                        this.updateApiMode();
+                        searchBtn.innerHTML = '<i class="fas fa-search"></i> Fetch ALL Open Source Scripts';
                         this.elements.scriptsLoading.style.display = 'none';
                     }, 500);
                 }
             }
             
             updateProgress(percent, message) {
-                this.elements.progressFill.style.width = `${percent}%`;
+                this.elements.progressFill.style.width = `${Math.min(percent, 100)}%`;
                 this.elements.progressText.textContent = message;
-                
-                if (percent < 30) {
-                    this.elements.progressFill.style.background = 'linear-gradient(90deg, #da3633, #f0883e)';
-                } else if (percent < 70) {
-                    this.elements.progressFill.style.background = 'linear-gradient(90deg, #f0883e, #79c0ff)';
-                } else {
-                    this.elements.progressFill.style.background = 'linear-gradient(90deg, #79c0ff, #3fb950)';
-                }
             }
             
             showStatus(message, type = 'info') {
@@ -1820,12 +1467,12 @@ print("Fly script loaded! Press F to toggle")`,
         
         // Initialize the application
         document.addEventListener('DOMContentLoaded', () => {
-            window.scriptViewer = new ScriptBloxViewer();
+            window.scriptFinder = new ScriptBloxOpenSourceFinder();
             
-            // Auto-set example and load demo
+            // Set example search
             setTimeout(() => {
-                document.getElementById('searchInput').value = 'admin';
-                window.scriptViewer.showStatus('Ready! Try searching for scripts or use demo mode.', 'info');
+                document.getElementById('searchInput').value = '99 nights';
+                window.scriptFinder.showStatus('Try searching for "99 nights" or any other script type', 'info');
             }, 500);
         });
     </script>
