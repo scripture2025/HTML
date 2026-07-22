@@ -2,7 +2,7 @@ local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 
 local screenGui = Instance.new("ScreenGui")
-screenGui.Name = "Brandon Aura Animation"
+screenGui.Name = "Brandon Animation Pack"
 screenGui.Parent = player.PlayerGui
 
 local frame = Instance.new("Frame")
@@ -20,20 +20,20 @@ corner.CornerRadius = UDim.new(0, 6)
 corner.Parent = frame
 
 local title = Instance.new("TextLabel")
-title.Size = UDim2.new(1, 0, 0, 20)
+title.Size = UDim2.new(1, 0, 0, 22)
 title.Position = UDim2.new(0, 0, 0, 2)
 title.BackgroundTransparency = 1
-title.Text = "Brandon Aura"
+title.Text = "Brandon Animation Pack"
 title.TextColor3 = Color3.fromRGB(255, 200, 50)
 title.TextSize = 14
 title.Font = Enum.Font.GothamBold
 title.Parent = frame
 
 local toggleButton = Instance.new("TextButton")
-toggleButton.Size = UDim2.new(0.85, 0, 0, 28)
+toggleButton.Size = UDim2.new(0.85, 0, 0, 30)
 toggleButton.Position = UDim2.new(0.075, 0, 0.25, 0)
 toggleButton.BackgroundColor3 = Color3.fromRGB(55, 55, 75)
-toggleButton.Text = "Aura Pack: OFF"
+toggleButton.Text = "Aura Animation Pack: OFF"
 toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 toggleButton.TextSize = 12
 toggleButton.Font = Enum.Font.GothamBold
@@ -119,12 +119,12 @@ local function toggleAnimations()
     isEnabled = not isEnabled
     
     if isEnabled then
-        toggleButton.Text = "Aura Pack: ON"
+        toggleButton.Text = "Aura Animation Pack: ON"
         toggleButton.BackgroundColor3 = Color3.fromRGB(50, 200, 50)
         setupAnimations()
         play(idleTrack)
     else
-        toggleButton.Text = "Aura Pack: OFF"
+        toggleButton.Text = "Aura Animation Pack: OFF"
         toggleButton.BackgroundColor3 = Color3.fromRGB(55, 55, 75)
         idleTrack:Stop()
         walkTrack:Stop()
