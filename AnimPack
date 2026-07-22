@@ -1,0 +1,160 @@
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "Brandon Aura Animation"
+screenGui.Parent = player.PlayerGui
+
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 200, 0, 100)
+frame.Position = UDim2.new(0.5, -100, 0.5, -50)
+frame.BackgroundColor3 = Color3.fromRGB(25, 25, 35)
+frame.BackgroundTransparency = 0.15
+frame.BorderSizePixel = 0
+frame.Active = true
+frame.Draggable = true
+frame.Parent = screenGui
+
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0, 6)
+corner.Parent = frame
+
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, 0, 0, 20)
+title.Position = UDim2.new(0, 0, 0, 2)
+title.BackgroundTransparency = 1
+title.Text = "Brandon Aura"
+title.TextColor3 = Color3.fromRGB(255, 200, 50)
+title.TextSize = 14
+title.Font = Enum.Font.GothamBold
+title.Parent = frame
+
+local toggleButton = Instance.new("TextButton")
+toggleButton.Size = UDim2.new(0.85, 0, 0, 28)
+toggleButton.Position = UDim2.new(0.075, 0, 0.25, 0)
+toggleButton.BackgroundColor3 = Color3.fromRGB(55, 55, 75)
+toggleButton.Text = "Aura Pack: OFF"
+toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+toggleButton.TextSize = 12
+toggleButton.Font = Enum.Font.GothamBold
+toggleButton.Parent = frame
+
+local toggleCorner = Instance.new("UICorner")
+toggleCorner.CornerRadius = UDim.new(0, 4)
+toggleCorner.Parent = toggleButton
+
+local notes = Instance.new("TextLabel")
+notes.Size = UDim2.new(1, 0, 0, 18)
+notes.Position = UDim2.new(0, 0, 0.7, 0)
+notes.BackgroundTransparency = 1
+notes.Text = "Notes: Brandon made this"
+notes.TextColor3 = Color3.fromRGB(180, 180, 180)
+notes.TextSize = 10
+notes.Font = Enum.Font.Gotham
+notes.Parent = frame
+
+local char = player.Character or player.CharacterAdded:Wait()
+local hum = char:WaitForChild("Humanoid")
+
+local idleAnim = Instance.new("Animation")
+idleAnim.AnimationId = "rbxassetid://136687532783709"
+
+local walkAnim = Instance.new("Animation")
+walkAnim.AnimationId = "rbxassetid://99498309796580"
+
+local jumpAnim = Instance.new("Animation")
+jumpAnim.AnimationId = "rbxassetid://139390570947836"
+
+local idleTrack = hum:LoadAnimation(idleAnim)
+local walkTrack = hum:LoadAnimation(walkAnim)
+local jumpTrack = hum:LoadAnimation(jumpAnim)
+
+local isEnabled = false
+local connections = {}
+
+local function play(anim)
+    if not isEnabled then return end
+    idleTrack:Stop()
+    walkTrack:Stop()
+    jumpTrack:Stop()
+    anim:Play()
+end
+
+local function setupAnimations()
+    for _, connection in pairs(connections) do
+        connection:Disconnect()
+    end
+    connections = {}
+    
+    table.insert(connections, hum.Running:Connect(function(speed)
+        if not isEnabled then return end
+        if hum:GetState() == Enum.HumanoidStateType.Jumping or hum:GetState() == Enum.HumanoidStateType.Freefall then
+            return
+        end
+        if speed > 0 then
+            play(walkTrack)
+        else
+            play(idleTrack)
+        end
+    end))
+    
+    table.insert(connections, hum.Jumping:Connect(function()
+        if not isEnabled then return end
+        play(jumpTrack)
+    end))
+    
+    table.insert(connections, hum.StateChanged:Connect(function(_, newState)
+        if not isEnabled then return end
+        if newState == Enum.HumanoidStateType.Landed then
+            if hum.MoveDirection.Magnitude > 0 then
+                play(walkTrack)
+            else
+                play(idleTrack)
+            end
+        end
+    end))
+end
+
+local function toggleAnimations()
+    isEnabled = not isEnabled
+    
+    if isEnabled then
+        toggleButton.Text = "Aura Pack: ON"
+        toggleButton.BackgroundColor3 = Color3.fromRGB(50, 200, 50)
+        setupAnimations()
+        play(idleTrack)
+    else
+        toggleButton.Text = "Aura Pack: OFF"
+        toggleButton.BackgroundColor3 = Color3.fromRGB(55, 55, 75)
+        idleTrack:Stop()
+        walkTrack:Stop()
+        jumpTrack:Stop()
+        
+        for _, connection in pairs(connections) do
+            connection:Disconnect()
+        end
+        connections = {}
+    end
+end
+
+toggleButton.MouseButton1Click:Connect(toggleAnimations)
+
+player.CharacterAdded:Connect(function(newChar)
+    char = newChar
+    hum = char:WaitForChild("Humanoid")
+    
+    idleTrack = hum:LoadAnimation(idleAnim)
+    walkTrack = hum:LoadAnimation(walkAnim)
+    jumpTrack = hum:LoadAnimation(jumpAnim)
+    
+    if isEnabled then
+        for _, connection in pairs(connections) do
+            connection:Disconnect()
+        end
+        connections = {}
+        setupAnimations()
+        play(idleTrack)
+    end
+end)
+
+play(idleTrack)
